@@ -59,3 +59,15 @@ void testptrstruct(People* p)
 	p->persion->score = 100;
 	p->count = 1;
 }
+
+#pragma region global variable
+int num;
+void SetVariable(int i)
+{
+	num = i;
+}
+int GetVariable()
+{
+	return num;
+}
+#pragma endregion

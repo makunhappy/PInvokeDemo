@@ -17,6 +17,8 @@ var people = Marshal.PtrToStructure<People>(p);
 var persion = Marshal.PtrToStructure<Persion>(people.persion);
 Marshal.FreeHGlobal(p);
 #endregion
+NativeMethods.SetVariable(100);
+var v = NativeMethods.GetVariable();
 Console.WriteLine("Hello, World!");
 Console.Read();
 

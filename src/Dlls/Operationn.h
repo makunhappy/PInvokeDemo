@@ -29,3 +29,8 @@ class Operationn
 {
 };
 
+
+#pragma region global variable
+extern "C" _declspec(dllexport) void SetVariable(int i);
+extern "C" _declspec(dllexport) int GetVariable();
+#pragma endregion

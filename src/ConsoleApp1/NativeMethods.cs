@@ -25,6 +25,11 @@ namespace ConsoleApp1
         //People intptr
         [DllImport("Dlls.dll", EntryPoint = "testptrstruct", CallingConvention = CallingConvention.Cdecl)]
         public static extern void TestPtrStruct(IntPtr p);
+
+        [DllImport("Dlls.dll", EntryPoint = "SetVariable", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void SetVariable(int v);
+        [DllImport("Dlls.dll", EntryPoint = "GetVariable", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetVariable();
     }
     public enum Day
     {
