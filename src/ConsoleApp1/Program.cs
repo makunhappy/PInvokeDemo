@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 
 var res = NativeMethods.Sum(1, 2);
+res = NativeMethods.Sum(1, 2, 3);
 NativeMethods.printLog = PrintLog;
 NativeMethods.Test(NativeMethods.printLog);
 StringBuilder day = new StringBuilder();
@@ -22,7 +23,7 @@ var v = NativeMethods.GetVariable();
 Console.WriteLine("Hello, World!");
 Console.Read();
 
-void PrintLog(int msg)
+static void PrintLog(int msg)
 {
     Console.WriteLine(msg);
 }

@@ -10,6 +10,11 @@ int sum(int a, int b)
 {
 	return a + b;
 }
+//∂‡Ã¨
+int sum(int a, int b, int c)
+{
+	return a + b + c;
+}
 DWORD WINAPI  loopthread(LPVOID para);
 HANDLE thread;
 DWORD threadId;

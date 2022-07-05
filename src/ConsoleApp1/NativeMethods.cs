@@ -12,6 +12,8 @@ namespace ConsoleApp1
         //普通调用
         [DllImport("Dlls.dll", EntryPoint = "sum", CallingConvention = CallingConvention.Cdecl)]
         public static extern int Sum(int a, int b);
+        [DllImport("Dlls.dll", EntryPoint = "sum", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int Sum(int a, int b,int c);
         public delegate void PrintLog(int msg);
         public static PrintLog printLog;
         //回调函数
