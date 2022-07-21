@@ -37,3 +37,5 @@ extern "C" _declspec(dllexport) int GetVariable();
 
 extern "C" _declspec(dllexport) int TestBuf(void** p);
 extern "C" _declspec(dllexport) int FreeBuf(void* p);
+
+extern "C" _declspec(dllexport) int InputCharStar(char* arr);

@@ -99,3 +99,9 @@ int FreeBuf(void* p)
 	return 0;
 }
 #pragma endregion
+
+int InputCharStar(char* arr)
+{
+	cout << arr << endl;
+	return 0;
+}
