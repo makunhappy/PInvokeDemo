@@ -32,6 +32,11 @@ namespace ConsoleApp1
         public static extern void SetVariable(int v);
         [DllImport("Dlls.dll", EntryPoint = "GetVariable", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetVariable();
+
+        [DllImport("Dlls.dll", EntryPoint = "TestBuf", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TestBuf(ref IntPtr p);
+        [DllImport("Dlls.dll", EntryPoint = "FreeBuf", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int FreeBuf(IntPtr p);
     }
     public enum Day
     {

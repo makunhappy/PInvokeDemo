@@ -34,3 +34,6 @@ class Operationn
 extern "C" _declspec(dllexport) void SetVariable(int i);
 extern "C" _declspec(dllexport) int GetVariable();
 #pragma endregion
+
+extern "C" _declspec(dllexport) int TestBuf(void** p);
+extern "C" _declspec(dllexport) int FreeBuf(void* p);

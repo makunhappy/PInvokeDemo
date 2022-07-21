@@ -3,6 +3,7 @@ using ConsoleApp1;
 using System.Runtime.InteropServices;
 using System.Text;
 
+/*
 var res = NativeMethods.Sum(1, 2);
 res = NativeMethods.Sum(1, 2, 3);
 NativeMethods.printLog = PrintLog;
@@ -20,6 +21,15 @@ Marshal.FreeHGlobal(p);
 #endregion
 NativeMethods.SetVariable(100);
 var v = NativeMethods.GetVariable();
+*/
+IntPtr ptr = new IntPtr();
+NativeMethods.TestBuf(ref ptr);
+unsafe
+{
+    int * p = (int*)ptr;
+}
+NativeMethods.FreeBuf(ptr);
+
 Console.WriteLine("Hello, World!");
 Console.Read();
 

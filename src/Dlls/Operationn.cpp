@@ -20,7 +20,8 @@ HANDLE thread;
 DWORD threadId;
 void test(void* callBack)
 {
-	thread = CreateThread(nullptr, 0, loopthread, callBack, 0, &threadId);
+	cout << callBack << endl;
+	//thread = CreateThread(nullptr, 0, loopthread, callBack, 0, &threadId);
 }
 DWORD WINAPI  loopthread(LPVOID para)
 {
@@ -74,5 +75,27 @@ void SetVariable(int i)
 int GetVariable()
 {
 	return num;
+}
+#pragma endregion
+
+#pragma region ·µ»ØÄÚ´æ¿é
+
+int TestBuf(void** p)
+{
+	int cnt = 10;
+	int* data = new int[10];
+	for (size_t i = 0; i < cnt; i++)
+	{
+		data[i] = i;
+	}
+	printf("0x%p\n", data);
+	*p = data;
+	printf("0x%p\n", *p);
+	return 0;
+}
+int FreeBuf(void* p)
+{
+	delete p;
+	return 0;
 }
 #pragma endregion
