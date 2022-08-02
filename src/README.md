@@ -1,3 +1,4 @@
+[参考](https://docs.microsoft.com/en-us/dotnet/framework/interop/interop-marshalling)
 # PInvoke 使用心得
 
 导出函数中，参数类型与c#的类型关系
@@ -34,3 +35,44 @@
 如果设计目标是c++向c# 传递结构体，可以
 - 在函数中使用struct struct_name *和ref struct_name
 - 在结构体中可以直接用struct或者struct struct_name* 和IntPtr
+
+
+# int数组使用(只能使用一维数组)
+函数参数中 c# -> c++ 时，需要指定数组长度，方式为
+```dotnet
+int TestArray(
+      [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] int[] arr, int cnt);
+```
+```c
+int TestArray(int arr[],int cnt);
+```
+或者
+```dotnet
+int TestArray(
+      [MarshalAs(UnmanagedType.LPArray, SizeConst = 10)] int[] arr);      
+```
+
+```c
+int TestArray(int arr[10]);
+```
+回调函数中数组必须时定长
+struct中的数组必须时定长
+
+# string
+- 函数参数中可以使用string和stringbuilder,string是in类型，stringbuilder是in out 类型，如果需要out语义，建议使用byte[]或者char[] (结构体中不能使用stringbuilder)
+-结构体中
+```dotnet
+[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+struct StringInfoA
+{
+    [MarshalAs(UnmanagedType.LPStr)] public string f1;
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)] public string f2;
+}
+```
+```c
+struct StringInfoA
+{
+    char *  f1;
+    char    f2[256];
+};
+```

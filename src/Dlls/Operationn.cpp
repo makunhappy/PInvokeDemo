@@ -40,6 +40,16 @@ DWORD WINAPI  loopthread(LPVOID para)
 	}
 	return 0;
 }
+void testcallback(void* callBack)
+{
+	auto pf = reinterpret_cast<void (*)(LogInfo)>(callBack);
+	LogInfo* logInfo = new LogInfo();
+	sprintf(logInfo->logs[0].data, "hello");
+	sprintf(logInfo->logs[1].data, "world");
+	logInfo->count = 2;
+	pf(*logInfo);
+	//std::cout << "finish" << endl;
+}
 void testenum(Day day, char* v)
 {
 	if (day == Sunday)
@@ -54,6 +64,13 @@ void testenum(Day day, char* v)
 void testsimplestruct(Persion p, char* res)
 {
 	sprintf(res, "%s,%d,%d", p.name, p.age, p.score);
+}
+void testsimplestructwithclass(Persion1* p)
+{
+	//sprintf(p->name, "hehe");
+	std::cout << p->name << endl;
+	p->age = 18;
+	p->score = 100;
 }
 void testptrstruct(People* p)
 {
@@ -103,5 +120,15 @@ int FreeBuf(void* p)
 int InputCharStar(char* arr)
 {
 	cout << arr << endl;
+	return 0;
+}
+int TestArray(int arr[], int count)
+{
+	cout << sizeof(arr) << endl;
+	cout << sizeof(arr[0]) << endl;
+	for (size_t i = 0; i < count; i++)
+	{
+		std::cout << arr[i] << "\t";
+	}
 	return 0;
 }

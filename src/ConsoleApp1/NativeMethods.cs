@@ -13,17 +13,24 @@ namespace ConsoleApp1
         [DllImport("Dlls.dll", EntryPoint = "sum", CallingConvention = CallingConvention.Cdecl)]
         public static extern int Sum(int a, int b);
         [DllImport("Dlls.dll", EntryPoint = "sum", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int Sum(int a, int b,int c);
+        public static extern int Sum(int a, int b, int c);
         public delegate void PrintLog(int msg);
         public static PrintLog printLog;
+        public delegate void LogCallback(LogInfo msg);
+        public static LogCallback logCallback;
         //回调函数
         [DllImport("Dlls.dll", EntryPoint = "test", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Test(PrintLog callBack);
+        //回调函数
+        [DllImport("Dlls.dll", EntryPoint = "testcallback", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void TestCallback(LogCallback callBack);
         //枚举
         [DllImport("Dlls.dll", EntryPoint = "testenum", CallingConvention = CallingConvention.Cdecl)]
         public static extern void TestEnum(Day day, StringBuilder v);
         [DllImport("Dlls.dll", EntryPoint = "testsimplestruct", CallingConvention = CallingConvention.Cdecl)]
         public static extern void TestSimpleStruct(Persion p, StringBuilder sb);
+        [DllImport("Dlls.dll", EntryPoint = "testsimplestructwithclass", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void TestSimpleStructWithClass([Out] Persion1 p);
         //People intptr
         [DllImport("Dlls.dll", EntryPoint = "testptrstruct", CallingConvention = CallingConvention.Cdecl)]
         public static extern void TestPtrStruct(IntPtr p);
@@ -44,6 +51,10 @@ namespace ConsoleApp1
 
         [DllImport("Dlls.dll", EntryPoint = "InputCharStar", CallingConvention = CallingConvention.Cdecl)]
         public static extern int InputCharStar(string msg);
+
+        [DllImport("Dlls.dll", EntryPoint = "TestArray", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TestArray(
+      [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] int[] arr, int cnt);
     }
     public enum Day
     {
@@ -65,6 +76,20 @@ namespace ConsoleApp1
         public int score;
     }
     [StructLayoutAttribute(LayoutKind.Sequential)]
+    public class Persion1
+    {
+
+        /// char*
+        [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 50)]
+        public string name;
+
+        /// int
+        public int age;
+
+        /// int
+        public int score;
+    }
+    [StructLayoutAttribute(LayoutKind.Sequential)]
     public struct People
     {
 
@@ -74,5 +99,17 @@ namespace ConsoleApp1
         /// int
         public int count;
     }
-
+    [StructLayout(LayoutKind.Sequential)]
+    public struct LogInfo
+    {
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
+        public LogData[] logInfo;
+        public int count;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct LogData
+    {
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+        string data;
+    };
 }
