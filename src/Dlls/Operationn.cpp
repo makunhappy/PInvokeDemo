@@ -43,10 +43,12 @@ DWORD WINAPI  loopthread(LPVOID para)
 void testcallback(void* callBack)
 {
 	auto pf = reinterpret_cast<void (*)(LogInfo)>(callBack);
-	LogInfo* logInfo = new LogInfo();
+	LogInfo* logInfo = new LogInfo();	
 	sprintf(logInfo->logs[0].data, "hello");
 	sprintf(logInfo->logs[1].data, "world");
 	logInfo->count = 2;
+	logInfo->bits.set(20);
+	logInfo->log_type = LogType::Type2;
 	pf(*logInfo);
 	//std::cout << "finish" << endl;
 }

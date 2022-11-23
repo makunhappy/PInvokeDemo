@@ -1,4 +1,5 @@
 #pragma once
+#include<bitset>
 
 enum Day
 {
@@ -28,10 +29,17 @@ struct LogData
 {
 	char data[256];
 };
+enum class LogType
+{
+	Type1 = 0,
+	Type2 = 1,
+};
 struct LogInfo
 {
 	LogData logs[20];
 	int count;
+	std::bitset<32> bits;
+	LogType log_type;
 };
 extern "C" _declspec(dllexport) int sum(int, int);
 extern "C" _declspec(dllexport) void test(void* callBack);

@@ -105,6 +105,13 @@ namespace ConsoleApp1
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
         public LogData[] logInfo;
         public int count;
+        public int bits;
+        public LogType type;
+    }
+    public enum LogType
+    {
+        Type1 = 0,
+        Type2 = 1,
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct LogData

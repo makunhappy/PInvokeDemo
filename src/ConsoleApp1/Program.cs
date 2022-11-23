@@ -7,10 +7,12 @@ var res = NativeMethods.Sum(1, 2);
 res = NativeMethods.Sum(1, 2, 3);
 NativeMethods.printLog = PrintLog;
 NativeMethods.Test(NativeMethods.printLog);
+*/
 #region 二维数组可以在以为数组中包一个一维数组
 NativeMethods.logCallback = TestCallback;
 NativeMethods.TestCallback(NativeMethods.logCallback);
 #endregion
+/*
 StringBuilder day = new StringBuilder();
 NativeMethods.TestEnum(Day.Monday, day);
 string s = new String('a', 20);
