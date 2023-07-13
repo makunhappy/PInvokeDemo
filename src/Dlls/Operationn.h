@@ -9,7 +9,7 @@ enum Day
 
 struct Persion
 {
-	char *name;
+	char* name;
 	int age;
 	int score;
 };
@@ -41,6 +41,13 @@ struct LogInfo
 	std::bitset<32> bits;
 	LogType log_type;
 };
+
+struct RetStruct
+{
+	int i;
+	char Message[50];
+};
+
 extern "C" _declspec(dllexport) int sum(int, int);
 extern "C" _declspec(dllexport) void test(void* callBack);
 extern "C" _declspec(dllexport) void testcallback(void* callBack);
@@ -66,3 +73,14 @@ extern "C" _declspec(dllexport) int FreeBuf(void* p);
 extern "C" _declspec(dllexport) int InputCharStar(char* arr);
 
 extern "C" _declspec(dllexport) int TestArray(int arr[], int count);
+
+extern "C" _declspec(dllexport) int TestCallBackMemroy(void* p);
+
+struct ArrayInStruct
+{
+	int Pos[2];
+};
+
+extern "C" _declspec(dllexport) int TestArrayInStruct(ArrayInStruct  p);
+
+extern "C" _declspec(dllexport) RetStruct TestReturnStruct();

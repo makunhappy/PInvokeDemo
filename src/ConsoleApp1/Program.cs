@@ -42,11 +42,22 @@ NativeMethods.FreeBuf(ptr);
 */
 //Persion1 p = new Persion1() { name = "kangkang"};
 //NativeMethods.TestSimpleStructWithClass( p);
-int[] a = { 1, 2, 3, 4, 5, 6 };
-NativeMethods.TestArray(a, a.Length);
+//int[] a = { 1, 2, 3, 4, 5, 6 };
+//NativeMethods.TestArray(a, a.Length);
+
+//NativeMethods.memoryCallBack = TestCallbackM;
+//NativeMethods.TestCallBackMemory(NativeMethods.memoryCallBack, 1000);
+
+//NativeMethods.TestArrayInStruct(new ArrayInStruct { Pos = new int[] { 0, 90 } });
+
+var ret = NativeMethods.TestReturnStruct();
+
 Console.WriteLine("Hello, World!");
 Console.Read();
+static void TestCallbackM(IntPtr ptr)
+{
 
+}
 static void PrintLog(int msg)
 {
     Console.WriteLine(msg);

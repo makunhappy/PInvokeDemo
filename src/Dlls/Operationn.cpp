@@ -43,7 +43,7 @@ DWORD WINAPI  loopthread(LPVOID para)
 void testcallback(void* callBack)
 {
 	auto pf = reinterpret_cast<void (*)(LogInfo)>(callBack);
-	LogInfo* logInfo = new LogInfo();	
+	LogInfo* logInfo = new LogInfo();
 	sprintf(logInfo->logs[0].data, "hello");
 	sprintf(logInfo->logs[1].data, "world");
 	logInfo->count = 2;
@@ -133,4 +133,35 @@ int TestArray(int arr[], int count)
 		std::cout << arr[i] << "\t";
 	}
 	return 0;
+}
+//4M
+struct MemroyStruct
+{
+	int Data[1024 * 1024];
+};
+int TestCallBackMemroy(void* p, int invokeTimes)
+{
+	auto pf = reinterpret_cast<void (*)(MemroyStruct*)>(p);
+	for (size_t i = 0; i < invokeTimes; i++)
+	{
+		MemroyStruct* pMemoryStruct = new MemroyStruct();
+		pf(pMemoryStruct);
+	}
+	return 0;
+}
+
+int TestArrayInStruct(ArrayInStruct  p)
+{
+	using namespace std;
+	cout << "0:" << p.Pos[0] << "1:" << p.Pos[1] << endl;
+	return 0;
+}
+
+RetStruct TestReturnStruct()
+{
+	RetStruct ret;
+	auto msg = "hell";
+	strcpy(ret.Message, msg);
+	ret.i = 100;
+	return ret;
 }

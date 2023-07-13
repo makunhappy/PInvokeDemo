@@ -18,6 +18,8 @@ namespace ConsoleApp1
         public static PrintLog printLog;
         public delegate void LogCallback(LogInfo msg);
         public static LogCallback logCallback;
+        public delegate void MemoryCallBack(IntPtr intPtr);
+        public static MemoryCallBack memoryCallBack;
         //回调函数
         [DllImport("Dlls.dll", EntryPoint = "test", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Test(PrintLog callBack);
@@ -53,8 +55,16 @@ namespace ConsoleApp1
         public static extern int InputCharStar(string msg);
 
         [DllImport("Dlls.dll", EntryPoint = "TestArray", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int TestArray(
-      [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] int[] arr, int cnt);
+        public static extern int TestArray([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] int[] arr, int cnt);
+
+        [DllImport("Dlls.dll", EntryPoint = "TestCallBackMemory", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TestCallBackMemory(MemoryCallBack callBack, int times);
+
+        [DllImport("Dlls.dll", EntryPoint = "TestArrayInStruct", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TestArrayInStruct(ArrayInStruct p);
+
+        [DllImport("Dlls.dll", EntryPoint = "TestReturnStruct", CallingConvention = CallingConvention.Cdecl)]
+        public static extern RetStruct TestReturnStruct();
     }
     public enum Day
     {
@@ -118,5 +128,18 @@ namespace ConsoleApp1
     {
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
         string data;
+    };
+    [StructLayout(LayoutKind.Sequential)]
+    public struct ArrayInStruct
+    {
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I4)]
+        public int[] Pos;
+    };
+    [StructLayout(LayoutKind.Sequential)]
+    public struct RetStruct
+    {
+        public int i;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 50)]
+        public string Message;
     };
 }
