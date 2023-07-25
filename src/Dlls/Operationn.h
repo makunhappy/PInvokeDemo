@@ -84,3 +84,11 @@ struct ArrayInStruct
 extern "C" _declspec(dllexport) int TestArrayInStruct(ArrayInStruct  p);
 
 extern "C" _declspec(dllexport) RetStruct TestReturnStruct();
+
+struct TestBoolStruct
+{
+	bool Adult;
+	char Address[128];
+};
+
+extern "C" _declspec(dllexport) int TestBool(TestBoolStruct tmp);

@@ -65,7 +65,18 @@ namespace ConsoleApp1
 
         [DllImport("Dlls.dll", EntryPoint = "TestReturnStruct", CallingConvention = CallingConvention.Cdecl)]
         public static extern RetStruct TestReturnStruct();
+
+        [DllImport("Dlls.dll", EntryPoint = "TestBool", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int TestBool(TestBoolStruct tmp);
     }
+    [StructLayout(LayoutKind.Sequential)]
+    struct TestBoolStruct
+    {
+        [MarshalAs(UnmanagedType.I1)]
+        public bool Adult;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
+        public string Address;
+    };
     public enum Day
     {
         SunDay,

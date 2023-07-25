@@ -165,3 +165,11 @@ RetStruct TestReturnStruct()
 	ret.i = 100;
 	return ret;
 }
+
+int TestBool(TestBoolStruct tmp)
+{
+	using namespace std;
+	cout << tmp.Adult << endl;
+	cout << tmp.Address << endl;
+	return 0;
+}

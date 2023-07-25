@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using ConsoleApp1;
+using System.Collections.Specialized;
 using System.Runtime.InteropServices;
 using System.Text;
 /*
@@ -50,7 +51,9 @@ NativeMethods.FreeBuf(ptr);
 
 //NativeMethods.TestArrayInStruct(new ArrayInStruct { Pos = new int[] { 0, 90 } });
 
-var ret = NativeMethods.TestReturnStruct();
+//var ret = NativeMethods.TestReturnStruct();
+var para = new TestBoolStruct() { Address = "bei", Adult = true };
+var res = NativeMethods.TestBool(para);
 
 Console.WriteLine("Hello, World!");
 Console.Read();
